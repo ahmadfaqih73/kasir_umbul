@@ -26,4 +26,10 @@ class Modeltransaksi  extends CI_Model
 $this->db->insert('transaksi', $data);   
 
     }
+    public function readtransaksi(){
+        $q_read=$this->db->query(' SELECT id_transaksi,nama_penjual,nama_menu, jenis_dijual,harga,jumlah,total_harga FROM transaksi 
+        INNER JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan 
+        INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual ;')->result_array();
+        return $q_read;
+    }
 }

@@ -64,5 +64,15 @@ class Laporan extends CI_Controller
 
 		}
     }
+	 public function print(){
+		$data['ts']= $this->Modellaporan->readtransaksi();
+		$data2['ts2']= $this->Modellaporan->readtransaksi2();
+        $this->load->view('template/Navbar');
+        $this->load->view('template/sidebar');
+        $this->load->view('Penjualan/laporanprint',$data,$data2);
+        $this->load->view('template/footer');
+	 }
+
+
 
 }
