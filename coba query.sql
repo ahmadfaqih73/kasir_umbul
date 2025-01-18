@@ -9,3 +9,5 @@ SELECT nama_penjual,SUM(total_harga) FROM transaksi INNER JOIN penjual ON transa
 SELECT waktu FROM transaksi WHERE waktu BETWEEN '2025-01-18' AND '2025-01-18';
  SELECT * FROM transaksi;
  SELECT nama_penjual,nama_menu, jenis_dijual,harga,jumlah,total_harga FROM transaksi INNER JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual ;
+SELECT nama_penjual,SUM(total_harga) FROM transaksi INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual WHERE waktu BETWEEN '2025-01-18' AND '2025-01-18';
+ SELECT nama_penjual,nama_menu, jenis_dijual,harga,jumlah,total_harga FROM transaksi INNER JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual AND waktu BETWEEN '2025-01-18' AND '2025-01-18' ;
