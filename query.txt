@@ -1,0 +1,1 @@
+SELECT penjual_nama,SUM(total_harga) as total FROM transaksi JOIN penjual ON penjual.id_penjual = transaksi.penjual_nama WHERE penjual_nama = 7;
