@@ -83,7 +83,13 @@
                         <li class="nav-item">
                             <a href="<?= base_url('Laporan/index'); ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan</p>
+                                <p>Laporan </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('Laporan/tiapstand'); ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan tiap stand </p>
                             </a>
                         </li>
                        

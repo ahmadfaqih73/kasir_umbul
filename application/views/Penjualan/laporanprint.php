@@ -53,6 +53,7 @@
                   <thead>
                     <tr>
               
+                    <th>no</th>
                       <th>Nama Penjual</th>
                       <th>Nama Menu</th>
                       <th>Jenis makanan</th>
@@ -62,9 +63,10 @@
                     </tr>
                   </thead>
                   <tbody
-                    <?php $no=1; foreach ($ts as $value) {
+                    <?php $no=1; foreach ($ts as $value); {
                         ?>
-							<tr>			
+						      	<tr>	
+                      <td><?php echo $no++; ?></td>		
                       <td style = "text-align:center;"><?php echo $value['nama_penjual'] ?></td>
                       <td style = "text-align:center;"><?php echo $value['nama_menu'] ?></td>
                       <td style = "text-align:center;"><?php echo $value['jenis_dijual'] ?></td>
@@ -77,29 +79,7 @@
                     
                   </tbody>
                 </table>
-                <table class="table table-bordered" id="tabelbayar" width="100%" cellspacing="0">
-
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Harga</th>
-                      <th>Potongan </th>
-                      <th>Total</th>
-                    </theat>
-                  </tfoot>
-                  <tbody
-                  <?php $no=1; foreach ($ts2 as $value) {
-                        ?>
-							<tr>			
-                      <td style = "text-align:center;"><?php echo 'Rp. ' . number_format($value['total_harga']) ?></td>
-                      <td style = "text-align:center;"><?php echo $value['jumlah'] ?></td>
-                      <td style = "text-align:center;"><?php echo 'Rp. ' . number_format($value['total_harga']*$value[.0,5]) ?></td>
-											</tr>
-                                            <?php $no++;
-                  } ?>
-                    
-                  </tbody>
-                </table>
+         
               </div>
             </div>
 

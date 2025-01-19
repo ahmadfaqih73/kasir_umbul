@@ -31,5 +31,18 @@ $this->db->insert('transaksi', $data);
         INNER JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan 
         INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual ;')->result_array();
         return $q_read;
+        // if ($q_read) {
+        //      $data=$q_read[0]['total_harga'];
+        //      $sum = 0 ;
+        //      for ($i = 0; $i < sizeof($data); $i++) {
+        //         $sum = $sum + $data[$i];
+        //     }
+            
+        //     // Display the result
+        //     echo "Sum of Array Values:" . $sum;
+
+        // }else {
+        //     echo "tidak ada";
+        // }
     }
 }
