@@ -11,7 +11,9 @@ class Coba extends CI_Controller
         echo 'Tidak ada data yang ditemukan';
     } else {
         // Menampilkan data di view
+     
         $this->load->view('Penjualan/coba',$data);
+       // echo 'Ada data masuk';
     }
    
   }

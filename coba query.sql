@@ -24,16 +24,40 @@ SELECT nama_penjual,SUM(total_harga) FROM transaksi INNER JOIN penjual ON transa
 
 SELECT 
     penjual.nama_penjual, 
+		transaksi.nama_menu,
     transaksi.waktu, 
     jenis_jualan.jenis_dijual, 
-    transaksi.harga AS harga_transaksi, 
+		transaksi.harga_jual,
     transaksi.jumlah, 
-    transaksi.total_harga, 
-    harga.harga AS harga_dari_harga_table, 
-    harga.nama_menu AS nama_menu_harga
+    transaksi.total_harga
+    
 FROM transaksi
 JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual
 JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan
 JOIN harga ON transaksi.jenis_menu = harga.jualan_jenis AND transaksi.penjual_nama = harga.penjual_id
 WHERE penjual.nama_penjual = 'Pak Rowaji'  
-AND transaksi.waktu BETWEEN '2025-01-17' AND '2025-01-18';
+AND transaksi.waktu BETWEEN '2025-01-18' AND '2025-01-18';
+
+SELECT penjual_nama,jenis_menu,harga_jual,jumlah,total_harga FROM transaksi
+JOIN penjual on transaksi.penjual_nama = penjual.id_penjual
+JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan
+WHERE penjual_nama = '3' AND waktu BETWEEN '2025-01-18' AND '2025-01-18';
+
+SELECT penjual_nama,jenis_menu,harga_jual,jumlah,total_harga FROM transaksi
+JOIN penjual on transaksi.penjual_nama = penjual.nama_penjual
+JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.jenis_dijual	
+WHERE penjual_nama = '3' AND waktu BETWEEN '2025-01-18' AND '2025-01-18';
+
+SELECT 
+    penjual.nama_penjual, 
+		transaksi.nama_menu,
+    transaksi.waktu, 
+    jenis_jualan.jenis_dijual, 
+		transaksi.harga_jual,
+    transaksi.jumlah, 
+    transaksi.total_harga   
+FROM transaksi
+JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual
+JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan
+WHERE penjual.nama_penjual = 'Pak Rowaji'  
+AND transaksi.waktu BETWEEN '2025-01-18' AND '2025-01-18';

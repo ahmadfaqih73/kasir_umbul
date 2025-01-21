@@ -20,19 +20,28 @@ class Modellaporan extends CI_Model
             return 'Data kosong';
         } else {
             // Query dengan parameter binding untuk menghindari SQL Injection
-			$this->db->select('penjual.nama_penjual, transaksi.waktu, jenis_jualan.jenis_dijual, 
-			transaksi.harga AS harga_transaksi, transaksi.jumlah, transaksi.total_harga, 
-			harga.harga AS harga_dari_harga_table, harga.nama_menu AS nama_menu_harga');
+			$this->db->select('penjual.nama_penjual, 
+        transaksi.nama_menu,
+    transaksi.waktu, 
+    jenis_jualan.jenis_dijual, 
+        transaksi.harga_jual,
+    transaksi.jumlah, 
+    transaksi.total_harga ');
 $this->db->from('transaksi');
 $this->db->join('penjual', 'transaksi.penjual_nama = penjual.id_penjual');
 $this->db->join('jenis_jualan', 'transaksi.jenis_menu = jenis_jualan.id_jenis_jualan');
-$this->db->join('harga', 'transaksi.jenis_menu = harga.jualan_jenis AND transaksi.penjual_nama = harga.penjual_id');
+
 
 // Menambahkan filter berdasarkan nama penjual dan rentang waktu
 if (!empty($nama_penjual)) {
-$this->db->where('penjual.nama_penjual', $nama_penjual);
+    // echo 'Nama Penjual'.$nama_penjual.'<br>';
+$this->db->where('transaksi.penjual_nama', $nama_penjual);
+}
+else{
+    echo "tidak ada nama penjual";
 }
 if (!empty($tanggalawal) && !empty($tanggalakhir)) {
+    // echo "tanggalawal  " .$tanggalawal. "dan Tanggal akhir".$tanggalakhir. "<br>";
 $this->db->where('transaksi.waktu >=', $tanggalawal);
 $this->db->where('transaksi.waktu <=', $tanggalakhir);
 }
