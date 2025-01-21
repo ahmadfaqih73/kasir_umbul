@@ -8,7 +8,7 @@
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title">Laporan Tiap stand </h3>
-              <form action ="<?php echo base_url(); ?>Laporan/filter" method="POST" target="_blank"> 
+              <form action ="<?php echo base_url(); ?>Coba/index" method="POST" target="_blank"> 
               
               <input name="valnilai" type="hidden">
               <div class="card-tools">

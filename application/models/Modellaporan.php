@@ -1,46 +1,54 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Modellaporan extends CI_Model
 {
-    // function filterbytanggal1($tanggalawal,$tanggalakhir){
+    public function readtransaksi()
+    {
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $nama_penjual = $this->input->post('namapenjual');
 
-	// 	$query = $this->db->query("SELECT * from transaksi where waktu BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY waktu ASC ");
+        // Debugging: Menampilkan nilai parameter yang diterima
+        // echo 'Tanggal Awal: ' . $tanggalawal . '<br>';
+        // echo 'Tanggal Akhir: ' . $tanggalakhir . '<br>';
+        // echo 'Nama Penjual: ' . $nama_penjual . '<br>';
 
-	// 	return $query->result();
-	// }
-	public function readtransaksi(){
-        $q_read=$this->db->query("SELECT nama_penjual,nama_menu, jenis_dijual,harga,jumlah,total_harga 
-		FROM transaksi INNER JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan 
-		INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual 
-		AND waktu BETWEEN '2025-01-18' AND '2025-01-18' ;")->result_array();
-		return $q_read;
-		//    echo "<pre>  ";
-        //     print_r($q_read);
-        //     echo "</pre>";
-        
-    }
-	
-	function filterbytanggal1($tanggalawal,$tanggalakhir,$namapenjual){
+        // Cek apakah parameter yang diperlukan kosong
+        if (empty($tanggalawal) && empty($tanggalakhir) && empty($nama_penjual)) {
+            return 'Data kosong';
+        } else {
+            // Query dengan parameter binding untuk menghindari SQL Injection
+			$this->db->select('penjual.nama_penjual, transaksi.waktu, jenis_jualan.jenis_dijual, 
+			transaksi.harga AS harga_transaksi, transaksi.jumlah, transaksi.total_harga, 
+			harga.harga AS harga_dari_harga_table, harga.nama_menu AS nama_menu_harga');
+$this->db->from('transaksi');
+$this->db->join('penjual', 'transaksi.penjual_nama = penjual.id_penjual');
+$this->db->join('jenis_jualan', 'transaksi.jenis_menu = jenis_jualan.id_jenis_jualan');
+$this->db->join('harga', 'transaksi.jenis_menu = harga.jualan_jenis AND transaksi.penjual_nama = harga.penjual_id');
 
-		$query = $this->db->query(" SELECT nama_penjual,SUM(total_harga) FROM transaksi
-		 INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual 
-		 WHERE nama_penjual = '$namapenjual' AND waktu BETWEEN '$tanggalawal' AND '$tanggalakhir'; ");
+// Menambahkan filter berdasarkan nama penjual dan rentang waktu
+if (!empty($nama_penjual)) {
+$this->db->where('penjual.nama_penjual', $nama_penjual);
+}
+if (!empty($tanggalawal) && !empty($tanggalakhir)) {
+$this->db->where('transaksi.waktu >=', $tanggalawal);
+$this->db->where('transaksi.waktu <=', $tanggalakhir);
+}
 
-		return $query->result();
-	}
-	function filterbytanggal($where){
+// Eksekusi query
+$query = $this->db->get();
 
-		$query = $this->db->get_where('transaksi',$where);
+// Debugging query yang dijalankan
+echo $this->db->last_query();  // Menampilkan query terakhir yang dijalankan
 
-		return $query->result();
-	}
-	// public function readtransaksi2(){
-	// 	$q_read=$this->db->query("SELECT SUM(total_harga) FROM transaksi 
-	// 	INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual 
-	// 	WHERE waktu BETWEEN '2025-01-18' AND '2025-01-18';")->result_array();
-	// 	return $q_read;
-	// }
-	
+if ($query->num_rows() > 0) {
+return $query->result_array();  // Mengembalikan hasil query dalam bentuk array
+} else {
+return 'Tidak ada data yang ditemukan';
+}
+}
+}
 
 }
