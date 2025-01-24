@@ -50,7 +50,7 @@ $this->db->where('transaksi.waktu <=', $tanggalakhir);
 $query = $this->db->get();
 
 // Debugging query yang dijalankan
-echo $this->db->last_query();  // Menampilkan query terakhir yang dijalankan
+ echo $this->db->last_query();  // Menampilkan query terakhir yang dijalankan
 
 if ($query->num_rows() > 0) {
 return $query->result_array();  // Mengembalikan hasil query dalam bentuk array
