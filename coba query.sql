@@ -55,9 +55,18 @@ SELECT
     jenis_jualan.jenis_dijual, 
 		transaksi.harga_jual,
     transaksi.jumlah, 
-    transaksi.total_harga   
+    transaksi.total_harga,
+	SUM(total_harga) 		 
 FROM transaksi
 JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual
 JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan
 WHERE penjual.nama_penjual = 'Pak Rowaji'  
 AND transaksi.waktu BETWEEN '2025-01-18' AND '2025-01-18';
+
+SELECT 
+SUM(total_harga) AS total,
+ SUM(total_harga) * 0.2 AS total_setelah_diskon,
+		SUM(total_harga) - (SUM(total_harga) * 0.2) AS total_setelah_diskon
+FROM transaksi
+JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual
+WHERE transaksi.waktu BETWEEN '2025-01-18' AND '2025-01-18';
