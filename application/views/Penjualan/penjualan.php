@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col">
-          <h1 class="m-0">Daftar Harga</h1>
+          <h1 class="m-0">Daftar Penjualan</h1>
           <br>
           <a href="<?php echo base_url('Transaksi/index') ?>" class="btn btn-primary">Tambah Transaksi</a>
           <br><br>
@@ -16,8 +16,8 @@
                   <tr>
                     <th>No.</th>
                     <th>Nama Penjual</th>
-                    <th>Jenis Menu</th>
                     <th>Nama Menu</th>
+                    <th>Jenis Menu</th>
                     <th>Harga</th>
                     <th>Jumlah</th>
                     <th>Harga</th>
@@ -35,7 +35,7 @@
                       <td><?php echo $value['nama_penjual'] ?></td>
                       <td><?php echo $value['nama_menu'] ?></td>
                       <td><?php echo $value['jenis_dijual'] ?></td>
-                      <td><?php echo 'Rp. ' . number_format($value['harga']) ?></td>
+                      <td><?php echo 'Rp. ' . number_format($value['harga_jual']) ?></td>
                       <td><?php echo $value['jumlah'] ?></td>
                       <td><?php echo 'Rp. ' . number_format($value['total_harga']) ?></td>
                       <td>
@@ -49,7 +49,7 @@
                           </i>
                           Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="<?= base_url(); ?>Penjualan/hapus/<?= $value['id_transaksi']; ?>">
+                        <a class="btn btn-danger btn-sm" href="<?= base_url(); ?>Transaksi/hapus/<?= $value['id_transaksi']; ?>">
                           <i class="fas fa-trash">
                           </i>
                           Delete

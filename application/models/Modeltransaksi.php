@@ -13,21 +13,21 @@ class Modeltransaksi  extends CI_Model
         $data =[
             'nama_menu' => $namamenu,
             'penjual_nama'=> $penjual,
-            'nama_menu' => $jenismenu,
-            'harga' => $harga,
+            'jenis_menu' => $jenismenu,
+            'harga_jual' => $harga,
             'jumlah'=> $jumlah,
             'total_harga'=>$harga*$jumlah,
             'waktu' => date('Y-m-d'),
 
         ];
-//    echo "<pre>  ";
-//             print_r($data);
-//             echo "</pre>";
+   // echo "<pre>  ";
+   //          print_r($data);
+   //          echo "</pre>";
 $this->db->insert('transaksi', $data);   
 
     }
     public function readtransaksi(){
-        $q_read=$this->db->query(' SELECT id_transaksi,nama_penjual,nama_menu, jenis_dijual,harga,jumlah,total_harga FROM transaksi 
+        $q_read=$this->db->query(' SELECT id_transaksi,nama_penjual,nama_menu, jenis_dijual,harga_jual,jumlah,total_harga FROM transaksi 
         INNER JOIN jenis_jualan ON transaksi.jenis_menu = jenis_jualan.id_jenis_jualan 
         INNER JOIN penjual ON transaksi.penjual_nama = penjual.id_penjual ;')->result_array();
         return $q_read;
@@ -45,4 +45,9 @@ $this->db->insert('transaksi', $data);
         //     echo "tidak ada";
         // }
     }
+     public function delete($id)
+    {
+       $this->db->delete('transaksi', ['id_transaksi' => $id]); 
+    }
+    
 }

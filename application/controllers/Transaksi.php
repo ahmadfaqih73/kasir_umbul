@@ -14,6 +14,10 @@ class Transaksi extends CI_Controller
 
     public function add_transaksi(){
         $this->Modeltransaksi->addtransaksi();
-        redirect('transaksi');
+        redirect('penjualan');
      }
+     public function hapus($id){
+        $this->Modeltransaksi-> delete($id);
+        redirect('penjualan');
+    }
 }
