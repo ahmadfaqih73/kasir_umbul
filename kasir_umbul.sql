@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : pribadi
+ Source Server         : PRIVATE
  Source Server Type    : MySQL
  Source Server Version : 100427 (10.4.27-MariaDB)
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 20/01/2025 22:14:04
+ Date: 26/01/2025 15:19:40
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `harga`  (
   `harga` double NULL DEFAULT NULL,
   `nama_menu` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_harga`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of harga
@@ -53,7 +53,7 @@ CREATE TABLE `jenis_jualan`  (
   `id_jenis_jualan` int NOT NULL AUTO_INCREMENT,
   `jenis_dijual` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_jenis_jualan`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jenis_jualan
@@ -70,7 +70,7 @@ CREATE TABLE `penjual`  (
   `id_penjual` int NOT NULL AUTO_INCREMENT,
   `nama_penjual` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_penjual`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of penjual
@@ -90,38 +90,51 @@ CREATE TABLE `transaksi`  (
   `id_transaksi` int NOT NULL AUTO_INCREMENT,
   `penjual_nama` int NULL DEFAULT NULL,
   `jenis_menu` int NULL DEFAULT NULL,
-  `harga` int NULL DEFAULT NULL,
+  `harga_jual` int NULL DEFAULT NULL,
   `jumlah` double NULL DEFAULT NULL,
   `total_harga` double NULL DEFAULT NULL,
   `waktu` date NULL DEFAULT NULL,
   `nama_menu` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_transaksi`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of transaksi
 -- ----------------------------
-INSERT INTO `transaksi` VALUES (1, 7, 2, 5000, 20, 100000, '2025-01-17', 'cilog');
-INSERT INTO `transaksi` VALUES (2, 7, 2, 5000, 15, 75000, '2025-01-17', 'cilog');
-INSERT INTO `transaksi` VALUES (3, 2, 2, 10000, 5, 50000, '2025-01-17', 'Rujak');
-INSERT INTO `transaksi` VALUES (4, 2, 3, 10000, 5, 50000, '2025-01-17', 'botol');
-INSERT INTO `transaksi` VALUES (5, 3, 3, 10000, 10, 100000, '2025-01-17', 'Es Jeruk');
-INSERT INTO `transaksi` VALUES (6, 3, 3, 5000, 15, 75000, '2025-01-17', 'Pop Ice');
-INSERT INTO `transaksi` VALUES (7, 4, 2, 10000, 15, 150000, '2025-01-17', 'Jasuke');
-INSERT INTO `transaksi` VALUES (8, 5, 2, 15000, 5, 75000, '2025-01-17', 'Sosis');
-INSERT INTO `transaksi` VALUES (9, 5, 5, 40000, 2, 80000, '2025-01-17', 'Mainan 1');
-INSERT INTO `transaksi` VALUES (10, 6, 2, 10000, 15, 150000, '2025-01-17', 'Arummanis');
-INSERT INTO `transaksi` VALUES (11, 6, 2, 5000, 7, 35000, '2025-01-17', 'salad');
-INSERT INTO `transaksi` VALUES (12, 7, 2, 5000, 15, 75000, '2025-01-18', 'cilog');
-INSERT INTO `transaksi` VALUES (13, 2, 2, 10000, 5, 50000, '2025-01-18', 'Botol');
-INSERT INTO `transaksi` VALUES (14, 2, 3, 5000, 5, 25000, '2025-01-18', 'Botol');
-INSERT INTO `transaksi` VALUES (15, 3, 3, 5000, 25, 125000, '2025-01-18', 'pop ice');
-INSERT INTO `transaksi` VALUES (16, 3, 2, 15000, 14, 210000, '2025-01-18', 'ice');
-INSERT INTO `transaksi` VALUES (17, 4, 2, 10000, 7, 70000, '2025-01-18', 'sosis');
-INSERT INTO `transaksi` VALUES (18, 4, 2, 10000, 8, 80000, '2025-01-18', 'sosis');
-INSERT INTO `transaksi` VALUES (19, 5, 2, 10000, 9, 90000, '2025-01-18', 'jasuke');
-INSERT INTO `transaksi` VALUES (20, 5, 5, 25000, 2, 50000, '2025-01-18', 'jasuke');
-INSERT INTO `transaksi` VALUES (21, 6, 2, 10000, 13, 130000, '2025-01-18', 'arummanis');
-INSERT INTO `transaksi` VALUES (22, 6, 2, 5000, 1, 5000, '2025-01-18', 'salad');
+INSERT INTO `transaksi` VALUES (1, 3, 3, 10000, 12, 120000, '2025-01-25', 'minuman jerus');
+INSERT INTO `transaksi` VALUES (2, 2, 2, 10000, 10, 100000, '2025-01-25', 'makanan');
+INSERT INTO `transaksi` VALUES (3, 4, 2, 10000, 5, 50000, '2025-01-25', 'jasuke');
+INSERT INTO `transaksi` VALUES (4, 5, 2, 15000, 8, 120000, '2025-01-25', 'Sosis');
+INSERT INTO `transaksi` VALUES (6, 2, 2, 10000, 2, 20000, '2025-01-25', 'Rujak');
+INSERT INTO `transaksi` VALUES (7, 3, 3, 10000, 10, 100000, '2025-01-25', 'minuman jeruk');
+INSERT INTO `transaksi` VALUES (8, 7, 2, 5000, 20, 100000, '2025-01-25', 'Cilog');
+INSERT INTO `transaksi` VALUES (9, 6, 2, 10000, 17, 170000, '2025-01-25', 'Arummanis');
+INSERT INTO `transaksi` VALUES (11, 5, 2, 15000, 4, 60000, '2025-01-25', 'Sosis');
+INSERT INTO `transaksi` VALUES (12, 4, 2, 10000, 5, 50000, '2025-01-25', 'jasuke');
+INSERT INTO `transaksi` VALUES (13, 5, 2, 10000, 1, 10000, '2025-01-25', 'Sosis');
+INSERT INTO `transaksi` VALUES (15, 7, 2, 5000, 5, 25000, '2025-01-25', 'Cilog');
+INSERT INTO `transaksi` VALUES (16, 3, 3, 5000, 10, 50000, '2025-01-25', 'minuman jeruk');
+INSERT INTO `transaksi` VALUES (17, 2, 2, 10000, 2, 20000, '2025-01-25', 'Rujak');
+INSERT INTO `transaksi` VALUES (18, 2, 2, 10000, 1, 10000, '2025-01-25', 'Rujak');
+INSERT INTO `transaksi` VALUES (19, 4, 2, 10000, 10, 100000, '2025-01-26', 'jasuke');
+INSERT INTO `transaksi` VALUES (20, 7, 2, 5000, 24, 120000, '2025-01-26', 'cilog');
+INSERT INTO `transaksi` VALUES (21, 5, 2, 10000, 5, 50000, '2025-01-26', 'sosis');
+INSERT INTO `transaksi` VALUES (22, 2, 2, 10000, 14, 140000, '2025-01-26', 'rujak');
+INSERT INTO `transaksi` VALUES (23, 2, 2, 10000, 1, 10000, '2025-01-26', 'rujak');
+INSERT INTO `transaksi` VALUES (24, 6, 2, 10000, 21, 210000, '2025-01-26', 'arumanis');
+INSERT INTO `transaksi` VALUES (26, 3, 3, 5000, 20, 100000, '2025-01-26', 'es jeruk');
+INSERT INTO `transaksi` VALUES (27, 5, 2, 10000, 5, 50000, '2025-01-26', 'sosis');
+INSERT INTO `transaksi` VALUES (28, 5, 2, 15000, 1, 15000, '2025-01-26', 'sosis');
+INSERT INTO `transaksi` VALUES (29, 2, 2, 10000, 5, 50000, '2025-01-26', 'rujak');
+INSERT INTO `transaksi` VALUES (30, 4, 2, 10000, 5, 50000, '2025-01-26', 'jasuke');
+INSERT INTO `transaksi` VALUES (31, 7, 2, 5000, 10, 50000, '2025-01-26', 'cilog');
+INSERT INTO `transaksi` VALUES (32, 6, 2, 10000, 11, 110000, '2025-01-26', 'arumanis');
+INSERT INTO `transaksi` VALUES (33, 5, 2, 10000, 7, 70000, '2025-01-26', 'sosis');
+INSERT INTO `transaksi` VALUES (34, 3, 3, 10000, 10, 100000, '2025-01-26', 'es jeruk');
+INSERT INTO `transaksi` VALUES (35, 4, 2, 10000, 3, 30000, '2025-01-26', 'jasuke');
+INSERT INTO `transaksi` VALUES (36, 3, 2, 10000, 3, 30000, '2025-01-26', 'es jeruk');
+INSERT INTO `transaksi` VALUES (37, 7, 2, 5000, 7, 35000, '2025-01-26', 'cilog');
+INSERT INTO `transaksi` VALUES (38, 5, 2, 15000, 2, 30000, '2025-01-26', 'sosis');
+INSERT INTO `transaksi` VALUES (39, 6, 2, 10000, 1, 10000, '2025-01-26', 'arumanis');
 
 SET FOREIGN_KEY_CHECKS = 1;
